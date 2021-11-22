@@ -2,6 +2,7 @@ from PIL import Image
 import numpy as np
 
 
+def getAreaAverage(arr, startRow, startCol):
     average = 0
     for row in range(startRow, startRow + cell_size[0]):
         for col in range(startCol, startCol + cell_size[1]):
@@ -37,22 +38,11 @@ def createGreyPixelArtFromImage():
     res = Image.fromarray(arr)
     res.save('res.jpg')
 
-
-img = Image.open("img2.jpg")
-grey_gradations = 5
-cell_size = [5, 5]
+image_name = input("Введите название изображения для преобразования: ")
+img = Image.open(image_name)
+grey_gradations = int(input("Количество градаций серого: "))
+size = input("Введите размер мозайки в формате 5*5: ")
+cell_size = list(map(int, size.split('*')))
 step = 255 // grey_gradations
+createGreyPixelArtFromImage()
 
-# arr = np.array(img)
-# a = len(arr)
-# a1 = len(arr[1])
-# image_row = 0
-# while image_row < a - 1:
-#     image_col = 0
-#     while image_col < a1 - 1:
-#         s = getAreaAverage()
-#         changeAreaColor()
-#         image_col = image_col + cell_size[0]
-#     image_row = image_row + cell_size[1]
-# res = Image.fromarray(arr)
-# res.save('res.jpg')
